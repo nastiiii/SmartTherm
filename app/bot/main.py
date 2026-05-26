@@ -12,7 +12,7 @@ from app.bot.handlers import (
     handle_message,
     start_command,
 )
-from app.config import OLLAMA_MODEL, TELEGRAM_BOT_TOKEN, USE_RAG_FOR_AUTO
+from app.config import OLLAMA_MODEL, TELEGRAM_BOT_TOKEN, TELEGRAM_PROXY, USE_RAG_FOR_AUTO
 from app.rag import check_ollama_health
 from app.retrieval import get_retriever
 
@@ -42,11 +42,11 @@ def main() -> None:
                 ollama,
             )
 
-    app = (
-        Application.builder()
-        .token(TELEGRAM_BOT_TOKEN)
-        .build()
-    )
+    builder = Application.builder().token(TELEGRAM_BOT_TOKEN)
+    if TELEGRAM_PROXY:
+        logger.info("Using proxy for Telegram: %s", TELEGRAM_PROXY)
+        builder = builder.proxy(TELEGRAM_PROXY).get_updates_proxy(TELEGRAM_PROXY)
+    app = builder.build()
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", start_command))
     app.add_handler(CommandHandler("cancel", cancel_command))

@@ -8,6 +8,13 @@ services:
       - ollama_data:/root/.ollama
     restart: unless-stopped
 
+  xray:
+    image: teddysun/xray:latest
+    container_name: smarttherm_xray
+    restart: unless-stopped
+    volumes:
+      - ./data/xray-config.json:/etc/xray/config.json:ro
+
   admin:
     build: .
     command: ["python", "-m", "app.admin.api"]
@@ -24,6 +31,7 @@ services:
     restart: unless-stopped
     depends_on:
       - admin
+      - xray
     volumes:
       - ./data:/app/data
 

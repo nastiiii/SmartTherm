@@ -33,6 +33,8 @@ OPERATOR_CHAT_ID = os.getenv("OPERATOR_CHAT_ID", "")
 ALLOWED_CHAT_IDS = os.getenv("ALLOWED_CHAT_IDS", "")
 ADMIN_USER_IDS = os.getenv("ADMIN_USER_IDS", "")
 
+TELEGRAM_PROXY = os.getenv("TELEGRAM_PROXY", "") or os.getenv("HTTPS_PROXY", "")
+
 
 ADMIN_API_HOST = os.getenv("ADMIN_API_HOST", "0.0.0.0")
 ADMIN_API_PORT = int(os.getenv("ADMIN_API_PORT", "8080"))

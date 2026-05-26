@@ -40,3 +40,6 @@ data/experts.txt
 
 # Generated caches
 data/cache/
+
+data/xray-config.json
+data/sing-box.json
