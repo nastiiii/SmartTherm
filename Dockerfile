@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ app/
 COPY data/faq_seed.csv data/faq_seed.csv
 COPY scripts/ scripts/
+COPY wiki/ wiki/
 
 RUN python scripts/init_all.py
 
