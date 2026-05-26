@@ -1,0 +1,75 @@
+query,expected_faq_id,expected_tags,expected_mode,source
+не подключается к wifi,11,wifi,auto,paraphrase
+wi-fi не работает smarttherm,11,wifi,auto,paraphrase
+как подключить котёл,40,installation,auto,paraphrase
+как подключить котел к smarttherm,40,installation,auto,paraphrase
+схема подключения opentherm,40,opentherm,auto,paraphrase
+котел baxi opentherm горячая вода пропала,21,baxi;hot_water,auto,paraphrase
+baxi гвс не греет после smarttherm,21,baxi,auto,paraphrase
+opentherm не работает нет обмена,20,opentherm,auto,paraphrase
+не горит значок ot на котле,20,opentherm,auto,paraphrase
+ds18b20 несколько датчиков на одной линии,10,sensors;1wire,auto,paraphrase
+можно ли несколько ds18b20,10,sensors,auto,paraphrase
+есть ли интеграция с home assistant,41,homeassistant,auto,paraphrase
+как связать smarttherm с ha через mqtt,41,mqtt;homeassistant,auto,paraphrase
+какая версия прошивки установлена,4,firmware,auto,paraphrase
+где посмотреть версию прошивки,4,firmware,auto,paraphrase
+можно ли другой датчик температуры,5,sensors,auto,paraphrase
+два контроллера на котле мешают,2,compatibility,auto,paraphrase
+сухой контакт 220 в на термостат,14,safety,auto,paraphrase
+блок питания usb зависает,16,power,auto,paraphrase
+smarttherm не работает с чего начать,7,diagnostics,auto,paraphrase
+on/off или opentherm что выбрать,19,opentherm,auto,paraphrase
+подключить провода opentherm,25,opentherm;wiring,auto,paraphrase
+mqtt mosquitto настройка smarttherm,41,mqtt,auto,paraphrase
+термостат в комнате или у котла,8,sensors,auto,paraphrase
+что приложить эксперту для помощи,18,support,auto,paraphrase
+проблемы после обновления прошивки,13,firmware,auto,paraphrase
+чем отличается smarttherm32,9,hardware,auto,paraphrase
+реле на smarttherm можно,6,wiring,auto,paraphrase
+котел поддерживает opentherm как проверить,12,opentherm,auto,paraphrase
+датчик давления smarttherm32,24,pressure,auto,paraphrase
+абракадабра xyz несуществующий вопрос,0,,escalate,paraphrase
+когда лучше сажать картофель,0,,escalate,paraphrase
+цена доставки ozon,0,,escalate,paraphrase
+Как связаны датчики температуры и температура котла? Почему датчики не влияют на температуру котла?,1,opentherm;sensors;settings;curated;curated,auto,curated_question
+В системе стоит второй контроллер/термостат. Может ли он «мешать» SmartTherm?,2,wiring;compatibility;errors;curated;curated,auto,curated_question
+Какой у вас котёл и почему это важно для подключения SmartTherm?,3,compatibility;opentherm;wiring;curated;curated,auto,curated_question
+Какая версия прошивки SmartTherm установлена и как её узнать?,4,firmware;diagnostics;curated;curated,auto,curated_question
+Можно ли подключить к SmartTherm другой датчик (не «родной»)?,5,sensors;wiring;hardware;curated;curated,auto,curated_question
+Можно ли реализовать реле/управление реле на SmartTherm?,6,wiring;hardware;safety;curated;curated,auto,curated_question
+SmartTherm «не работает». С чего начать диагностику?,7,diagnostics;errors;wiring;firmware;curated;curated,auto,curated_question
+Где должен стоять термостат/датчик: у котла или в комнате? Как правильно управлять температурой?,8,settings;sensors;heating;curated;curated,auto,curated_question
+В чём отличие SmartTherm и SmartTherm32?,9,hardware;firmware;compatibility;curated;curated,auto,curated_question
+Почему нельзя опрашивать DS18B20 слишком часто и сколько датчиков можно вешать на 1-Wire?,10,sensors;1wire;hardware;curated;curated,auto,curated_question
+Не подключается к Wi-Fi. Что проверить в первую очередь?,11,wifi;diagnostics;errors;curated;curated,auto,curated_question
+"Как понять, поддерживает ли мой котёл OpenTherm и что делать, если не поддерживает?",12,opentherm;compatibility;wiring;safety;curated;curated,auto,curated_question
+После обновления прошивки появились проблемы. Что делать?,13,firmware;diagnostics;errors;curated;curated,auto,curated_question
+Как безопасно подключать термостат/контроллер к котлу (про сухие контакты и запрет 220 В)?,14,safety;wiring;compatibility;curated;curated,auto,curated_question
+Как подключить SmartTherm к Home Assistant / Алисе (в общих чертах)?,15,homeassistant;mqtt;integration;curated;curated,auto,curated_question
+Проблемы с питанием/зависаниями. Как подобрать блок питания для SmartTherm?,16,power;diagnostics;hardware;curated;curated,auto,curated_question
+Нужно ли два датчика T1/T2 и можно ли их объединять?,17,sensors;settings;1wire;curated;curated,auto,curated_question
+"Какие данные нужно приложить, чтобы эксперт быстро помог в чате?",18,support;diagnostics;curated;curated,auto,curated_question
+Как выбрать режим: on/off или OpenTherm?,19,opentherm;compatibility;settings;curated;curated,auto,curated_question
+"OpenTherm не работает: нет обмена, режим readonly или не загорается значок OT на котле",20,opentherm;wiring;diagnostics;errors;curated;curated,auto,curated_question
+"Котёл Baxi OpenTherm: пропала горячая вода (ГВС), не греет бойлер или отопление не выше 40–45 °C после подключения SmartTherm",21,baxi;opentherm;settings;hot_water;curated;curated,auto,curated_question
+SmartTherm установлен внутри корпуса котла и отваливается / перезагружается. Может ли перегрев быть причиной?,22,hardware;diagnostics;power;safety;curated;curated,auto,curated_question
+"Не подключается приложение SmartTherm Client удалённо по MQTT, хотя контроллер к серверу подключается",23,mqtt;wifi;integration;diagnostics;curated;curated,auto,curated_question
+Как подключить внешний датчик давления к SmartTherm32 для удалённого мониторинга?,24,sensors;pressure;smarttherm32;hardware;curated;curated,auto,curated_question
+Как правильно подключить провода OpenTherm к котлу и SmartTherm?,25,opentherm;wiring;safety;installation;curated;curated,auto,curated_question
+Может там как-то второй контроллер затыкается,26,baxi;hot_water;cluster;curated;curated,auto,curated_question
+а какой у вас котёл?,27,firmware;hardware;cluster;curated;curated,auto,curated_question
+какая версия прошивки?,28,firmware;hardware;cluster;curated;curated,auto,curated_question
+Что бы туда можно было воткнуть любой другой датчик,29,opentherm;sensors;wiring;power;hardware;cluster;curated;curated,auto,curated_question
+"Давление измеряет обычный датчик давления, к которому прикручена есп. У меня это вообще через ж сделано - на этом датчике и инвертор висит, и есп, причем датчик сдуру был куплен токовый, 4-20мА, по странным нагугленным советам, что было отдельным гемором",30,sensors;settings;pressure;cluster;curated;curated,auto,curated_question
+А на смарттерм можно реализовать реле ?,31,opentherm;wiring;power;hardware;cluster;curated;curated,auto,curated_question
+А SmartTherm работает?,32,sensors;hardware;cluster;curated;curated,auto,curated_question
+"А ещё вопрос, может уже не раз повторялся, но я не увидел ответ, есть просто SmartTherm, а есть SmartTherm32, в чём отличие?",33,baxi;hot_water;hardware;cluster;curated;curated,auto,curated_question
+"Народ, помогите. Котел Baxi На практике проверил (3 раза) что после отключения панели и подключения контроллера перестаёт работать подача горячей воды. Отопление работает. Так же обратил внимание, сто при установке температуры воды отопления выходная вода больше 48 не нагревалась. При подключение панели вместо контроллера проблемы уходят. Куда копать и что проверять?",34,baxi;wiring;hot_water;cluster;curated;curated,auto,curated_question
+"Смотри, что есть на AliExpress! NodeMcu Lua WIFI плата для интернета вещей за 172 ₽ - уже со скидкой -12% <URL>",35,opentherm;wifi;cluster;curated;curated,auto,curated_question
+Это после того как котел нагрел бойлер.,36,baxi;hot_water;cluster;curated;curated,auto,curated_question
+Здравствуйте Ещё раз прошу вашей помощи Кто знает может как подключить термостат удалённо по mqtt Не подключается удалённо приложение smarttherm client к серверу сам контроллер подключается .С телефона сервер пингуется,37,opentherm;mqtt;sensors;firmware;wiring;cluster;curated;curated,auto,curated_question
+"Ну у меня датчик давления в котле завышает по сравнению со стрелочными ☺️ А если давление ходит вместе с температурой, то это первый звоночек на проверку РБ. Когда-то пауза между включениями котла станет чуть больше, давление упадёт до порога, и котёл уже не включится, уйдя в ошибку. Смысла тянуть с проверкой никакого. Весна ведь, включаться будет всё реже и реже...",38,sensors;pressure;hardware;diagnostics;cluster;curated;curated,auto,curated_question
+"У меня сейчас Vers <IP> build Oct 17 2025 По ссылке свежее? Сегодняшнее, похоже",39,firmware;baxi;hot_water;cluster;curated;curated,auto,curated_question
+Как подключить котёл к SmartTherm (общая схема)?,40,wiring;opentherm;installation;curated;curated;curated,auto,curated_question
+Есть ли прямая интеграция SmartTherm с Home Assistant?,41,homeassistant;mqtt;integration;curated;curated;curated,auto,curated_question

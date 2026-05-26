@@ -1,0 +1,753 @@
+{
+  "metrics": {
+    "n_queries": 74,
+    "n_with_expected_id": 71,
+    "top1_id_accuracy": 0.7465,
+    "top1_id_or_tag_accuracy": 0.9296,
+    "mode_accuracy": 0.973,
+    "mrr": 0.7864,
+    "faq_indexed": 239
+  },
+  "results": [
+    {
+      "query": "не подключается к wifi",
+      "expected_faq_id": 11,
+      "got_faq_id": 11,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7754,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "wi-fi не работает smarttherm",
+      "expected_faq_id": 11,
+      "got_faq_id": 11,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.793,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "как подключить котёл",
+      "expected_faq_id": 40,
+      "got_faq_id": 25,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7646,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "как подключить котел к smarttherm",
+      "expected_faq_id": 40,
+      "got_faq_id": 5,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8234,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "схема подключения opentherm",
+      "expected_faq_id": 40,
+      "got_faq_id": 12,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7173,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "котел baxi opentherm горячая вода пропала",
+      "expected_faq_id": 21,
+      "got_faq_id": 34,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7315,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "baxi гвс не греет после smarttherm",
+      "expected_faq_id": 21,
+      "got_faq_id": 33,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8991,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "opentherm не работает нет обмена",
+      "expected_faq_id": 20,
+      "got_faq_id": 20,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8194,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "не горит значок ot на котле",
+      "expected_faq_id": 20,
+      "got_faq_id": 14,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.6548,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "ds18b20 несколько датчиков на одной линии",
+      "expected_faq_id": 10,
+      "got_faq_id": 10,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8249,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "можно ли несколько ds18b20",
+      "expected_faq_id": 10,
+      "got_faq_id": 10,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.6928,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "есть ли интеграция с home assistant",
+      "expected_faq_id": 41,
+      "got_faq_id": 41,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7826,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "как связать smarttherm с ha через mqtt",
+      "expected_faq_id": 41,
+      "got_faq_id": 15,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8967,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "какая версия прошивки установлена",
+      "expected_faq_id": 4,
+      "got_faq_id": 4,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.6517,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "где посмотреть версию прошивки",
+      "expected_faq_id": 4,
+      "got_faq_id": 29,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.5508,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "можно ли другой датчик температуры",
+      "expected_faq_id": 5,
+      "got_faq_id": 30,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9126,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "два контроллера на котле мешают",
+      "expected_faq_id": 2,
+      "got_faq_id": 38,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8058,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "сухой контакт 220 в на термостат",
+      "expected_faq_id": 14,
+      "got_faq_id": 14,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8467,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "блок питания usb зависает",
+      "expected_faq_id": 16,
+      "got_faq_id": 16,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7545,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "smarttherm не работает с чего начать",
+      "expected_faq_id": 7,
+      "got_faq_id": 16,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.6535,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "on/off или opentherm что выбрать",
+      "expected_faq_id": 19,
+      "got_faq_id": 19,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8723,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "подключить провода opentherm",
+      "expected_faq_id": 25,
+      "got_faq_id": 25,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9215,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "mqtt mosquitto настройка smarttherm",
+      "expected_faq_id": 41,
+      "got_faq_id": 5,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.649,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "термостат в комнате или у котла",
+      "expected_faq_id": 8,
+      "got_faq_id": 8,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9403,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "что приложить эксперту для помощи",
+      "expected_faq_id": 18,
+      "got_faq_id": 18,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.6786,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "проблемы после обновления прошивки",
+      "expected_faq_id": 13,
+      "got_faq_id": 13,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7242,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "чем отличается smarttherm32",
+      "expected_faq_id": 9,
+      "got_faq_id": 9,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8566,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "реле на smarttherm можно",
+      "expected_faq_id": 6,
+      "got_faq_id": 31,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.761,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "котел поддерживает opentherm как проверить",
+      "expected_faq_id": 12,
+      "got_faq_id": 12,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7605,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "датчик давления smarttherm32",
+      "expected_faq_id": 24,
+      "got_faq_id": 24,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0137,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "абракадабра xyz несуществующий вопрос",
+      "expected_faq_id": 0,
+      "got_faq_id": 31,
+      "expected_mode": "escalate",
+      "got_mode": "clarify",
+      "similarity": 0.4546,
+      "id_match": true,
+      "mode_match": false
+    },
+    {
+      "query": "когда лучше сажать картофель",
+      "expected_faq_id": 0,
+      "got_faq_id": 31,
+      "expected_mode": "escalate",
+      "got_mode": "escalate",
+      "similarity": 0.4076,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "цена доставки ozon",
+      "expected_faq_id": 0,
+      "got_faq_id": 35,
+      "expected_mode": "escalate",
+      "got_mode": "clarify",
+      "similarity": 0.4937,
+      "id_match": true,
+      "mode_match": false
+    },
+    {
+      "query": "Как связаны датчики температуры и температура котла? Почему датчики не влияют на температуру котла?",
+      "expected_faq_id": 1,
+      "got_faq_id": 1,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1612,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "В системе стоит второй контроллер/термостат. Может ли он «мешать» SmartTherm?",
+      "expected_faq_id": 2,
+      "got_faq_id": 2,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9956,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Какой у вас котёл и почему это важно для подключения SmartTherm?",
+      "expected_faq_id": 3,
+      "got_faq_id": 3,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9468,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Какая версия прошивки SmartTherm установлена и как её узнать?",
+      "expected_faq_id": 4,
+      "got_faq_id": 4,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0048,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Можно ли подключить к SmartTherm другой датчик (не «родной»)?",
+      "expected_faq_id": 5,
+      "got_faq_id": 5,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1149,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Можно ли реализовать реле/управление реле на SmartTherm?",
+      "expected_faq_id": 6,
+      "got_faq_id": 6,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8382,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "SmartTherm «не работает». С чего начать диагностику?",
+      "expected_faq_id": 7,
+      "got_faq_id": 7,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7898,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Где должен стоять термостат/датчик: у котла или в комнате? Как правильно управлять температурой?",
+      "expected_faq_id": 8,
+      "got_faq_id": 8,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1152,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "В чём отличие SmartTherm и SmartTherm32?",
+      "expected_faq_id": 9,
+      "got_faq_id": 9,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.027,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Почему нельзя опрашивать DS18B20 слишком часто и сколько датчиков можно вешать на 1-Wire?",
+      "expected_faq_id": 10,
+      "got_faq_id": 10,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1433,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Не подключается к Wi-Fi. Что проверить в первую очередь?",
+      "expected_faq_id": 11,
+      "got_faq_id": 11,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9927,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как понять, поддерживает ли мой котёл OpenTherm и что делать, если не поддерживает?",
+      "expected_faq_id": 12,
+      "got_faq_id": 12,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.998,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "После обновления прошивки появились проблемы. Что делать?",
+      "expected_faq_id": 13,
+      "got_faq_id": 13,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7425,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как безопасно подключать термостат/контроллер к котлу (про сухие контакты и запрет 220 В)?",
+      "expected_faq_id": 14,
+      "got_faq_id": 14,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1519,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как подключить SmartTherm к Home Assistant / Алисе (в общих чертах)?",
+      "expected_faq_id": 15,
+      "got_faq_id": 15,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9404,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Проблемы с питанием/зависаниями. Как подобрать блок питания для SmartTherm?",
+      "expected_faq_id": 16,
+      "got_faq_id": 16,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9861,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Нужно ли два датчика T1/T2 и можно ли их объединять?",
+      "expected_faq_id": 17,
+      "got_faq_id": 17,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1269,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Какие данные нужно приложить, чтобы эксперт быстро помог в чате?",
+      "expected_faq_id": 18,
+      "got_faq_id": 18,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0226,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как выбрать режим: on/off или OpenTherm?",
+      "expected_faq_id": 19,
+      "got_faq_id": 19,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0396,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "OpenTherm не работает: нет обмена, режим readonly или не загорается значок OT на котле",
+      "expected_faq_id": 20,
+      "got_faq_id": 20,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.145,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Котёл Baxi OpenTherm: пропала горячая вода (ГВС), не греет бойлер или отопление не выше 40–45 °C после подключения SmartTherm",
+      "expected_faq_id": 21,
+      "got_faq_id": 21,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0937,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "SmartTherm установлен внутри корпуса котла и отваливается / перезагружается. Может ли перегрев быть причиной?",
+      "expected_faq_id": 22,
+      "got_faq_id": 22,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0954,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Не подключается приложение SmartTherm Client удалённо по MQTT, хотя контроллер к серверу подключается",
+      "expected_faq_id": 23,
+      "got_faq_id": 23,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1359,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как подключить внешний датчик давления к SmartTherm32 для удалённого мониторинга?",
+      "expected_faq_id": 24,
+      "got_faq_id": 24,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1011,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как правильно подключить провода OpenTherm к котлу и SmartTherm?",
+      "expected_faq_id": 25,
+      "got_faq_id": 25,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0664,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Может там как-то второй контроллер затыкается",
+      "expected_faq_id": 26,
+      "got_faq_id": 2,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.763,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "а какой у вас котёл?",
+      "expected_faq_id": 27,
+      "got_faq_id": 27,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.5883,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "какая версия прошивки?",
+      "expected_faq_id": 28,
+      "got_faq_id": 4,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.5249,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "Что бы туда можно было воткнуть любой другой датчик",
+      "expected_faq_id": 29,
+      "got_faq_id": 29,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9443,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Давление измеряет обычный датчик давления, к которому прикручена есп. У меня это вообще через ж сделано - на этом датчике и инвертор висит, и есп, причем датчик сдуру был куплен токовый, 4-20мА, по странным нагугленным советам, что было отдельным гемором",
+      "expected_faq_id": 30,
+      "got_faq_id": 30,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0934,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "А на смарттерм можно реализовать реле ?",
+      "expected_faq_id": 31,
+      "got_faq_id": 29,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7259,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "А SmartTherm работает?",
+      "expected_faq_id": 32,
+      "got_faq_id": 5,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.7093,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "А ещё вопрос, может уже не раз повторялся, но я не увидел ответ, есть просто SmartTherm, а есть SmartTherm32, в чём отличие?",
+      "expected_faq_id": 33,
+      "got_faq_id": 33,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8367,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Народ, помогите. Котел Baxi На практике проверил (3 раза) что после отключения панели и подключения контроллера перестаёт работать подача горячей воды. Отопление работает. Так же обратил внимание, сто при установке температуры воды отопления выходная вода больше 48 не нагревалась. При подключение панели вместо контроллера проблемы уходят. Куда копать и что проверять?",
+      "expected_faq_id": 34,
+      "got_faq_id": 34,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.2143,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Смотри, что есть на AliExpress! NodeMcu Lua WIFI плата для интернета вещей за 172 ₽ - уже со скидкой -12% <URL>",
+      "expected_faq_id": 35,
+      "got_faq_id": 35,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.0884,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Это после того как котел нагрел бойлер.",
+      "expected_faq_id": 36,
+      "got_faq_id": 36,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8482,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Здравствуйте Ещё раз прошу вашей помощи Кто знает может как подключить термостат удалённо по mqtt Не подключается удалённо приложение smarttherm client к серверу сам контроллер подключается .С телефона сервер пингуется",
+      "expected_faq_id": 37,
+      "got_faq_id": 37,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.1691,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Ну у меня датчик давления в котле завышает по сравнению со стрелочными ☺️ А если давление ходит вместе с температурой, то это первый звоночек на проверку РБ. Когда-то пауза между включениями котла станет чуть больше, давление упадёт до порога, и котёл уже не включится, уйдя в ошибку. Смысла тянуть с проверкой никакого. Весна ведь, включаться будет всё реже и реже...",
+      "expected_faq_id": 38,
+      "got_faq_id": 38,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 1.2105,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "У меня сейчас Vers <IP> build Oct 17 2025 По ссылке свежее? Сегодняшнее, похоже",
+      "expected_faq_id": 39,
+      "got_faq_id": 39,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.5967,
+      "id_match": true,
+      "mode_match": true
+    },
+    {
+      "query": "Как подключить котёл к SmartTherm (общая схема)?",
+      "expected_faq_id": 40,
+      "got_faq_id": 5,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.9014,
+      "id_match": false,
+      "mode_match": true
+    },
+    {
+      "query": "Есть ли прямая интеграция SmartTherm с Home Assistant?",
+      "expected_faq_id": 41,
+      "got_faq_id": 41,
+      "expected_mode": "auto",
+      "got_mode": "auto",
+      "similarity": 0.8958,
+      "id_match": true,
+      "mode_match": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+
+# Logs
+*.log
+
+# LaTeX build artefacts
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+docs/missfont.log
+
+# Personal data (NEVER commit)
+data/assistant.db
+data/result.json
+data/messages_extracted.csv
+data/dialog_messages.csv
+data/dialog_summary.csv
+data/qa_from_sessions.csv
+data/qa_domain.csv
+data/qa_domain_good.csv
+data/questions_only.csv
+data/domain_questions.csv
+data/top_question_clusters.csv
+data/experts.txt
+
+# Generated caches
+data/cache/

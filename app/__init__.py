@@ -1,0 +1,1 @@
+"""SmartTherm support assistant application."""

@@ -1,0 +1,31 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["local-ollama"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  admin:
+    build: .
+    command: ["python", "-m", "app.admin.api"]
+    env_file: .env
+    ports:
+      - "${ADMIN_API_PORT:-8088}:${ADMIN_API_PORT:-8088}"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  bot:
+    build: .
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - admin
+    volumes:
+      - ./data:/app/data
+
+volumes:
+  ollama_data:

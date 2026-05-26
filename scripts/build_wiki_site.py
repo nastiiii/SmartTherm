@@ -1,0 +1,166 @@
+
+"""Generate static SmartTherm wiki from data/faq_seed.csv (same file as bot DB import)."""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from app.knowledge_base import KB_CSV, WIKI_SITE_DIR
+
+INDEX_HTML = """<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartTherm — база знаний</title>
+  <style>
+    :root {
+      --bg: #0f1419; --card: #1a2332; --text: #e7ecf3; --muted: #8b9cb3;
+      --accent: #3d8bfd; --border: #2a3548;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      margin: 0; line-height: 1.55;
+    }
+    header {
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: rgba(15,20,25,.95);
+      backdrop-filter: blur(8px); z-index: 10;
+    }
+    h1 { font-size: 1.25rem; margin: 0 0 .75rem; }
+    .meta { color: var(--muted); font-size: .9rem; margin-bottom: .75rem; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    input, select {
+      font: inherit; padding: .5rem .75rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--card); color: var(--text);
+    }
+    input[type=search] { flex: 1; min-width: 200px; }
+    main { max-width: 920px; margin: 0 auto; padding: 1rem 1.5rem 3rem; }
+    article {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem;
+    }
+    article h2 { font-size: 1.05rem; margin: 0 0 .5rem; }
+    article h2 a { color: var(--text); text-decoration: none; }
+    article h2 a:hover { color: var(--accent); }
+    .tags { margin-bottom: .5rem; }
+    .tag {
+      display: inline-block; font-size: .75rem; padding: .15rem .45rem;
+      border-radius: 6px; background: #243044; color: var(--muted); margin-right: .25rem;
+    }
+    .answer {
+      color: #c5d0e0; white-space: pre-wrap; font-size: .95rem;
+      max-height: 9rem; overflow: hidden; position: relative;
+    }
+    article.open .answer { max-height: none; }
+    .more {
+      margin-top: .5rem; color: var(--accent); cursor: pointer; font-size: .85rem;
+      border: none; background: none; padding: 0;
+    }
+    .hidden { display: none !important; }
+    footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SmartTherm — база знаний</h1>
+    <p class="meta">Карточек: <strong id="count">0</strong>. Тот же файл, что импортируется в бота (<code>data/faq_seed.csv</code>).</p>
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Поиск по вопросу и ответу…" autocomplete="off" />
+      <select id="tag"><option value="">Все темы</option></select>
+    </div>
+  </header>
+  <main id="list"></main>
+  <footer>Синхронизация: <code>make kb-sync</code></footer>
+  <script src="cards.js"></script>
+  <script>
+    const cards = window.WIKI_CARDS || [];
+    const list = document.getElementById('list');
+    const qEl = document.getElementById('q');
+    const tagEl = document.getElementById('tag');
+    const countEl = document.getElementById('count');
+
+    const tags = [...new Set(cards.flatMap(c => (c.tags || '').split(';').filter(Boolean)))].sort();
+    tags.forEach(t => {
+      const o = document.createElement('option');
+      o.value = t; o.textContent = t;
+      tagEl.appendChild(o);
+    });
+
+    function render() {
+      const q = qEl.value.trim().toLowerCase();
+      const tag = tagEl.value;
+      list.innerHTML = '';
+      let n = 0;
+      for (const c of cards) {
+        const blob = (c.question + ' ' + c.answer + ' ' + c.tags).toLowerCase();
+        if (tag && !(';'+c.tags+';').includes(';'+tag+';')) continue;
+        if (q && !blob.includes(q)) continue;
+        n++;
+        const art = document.createElement('article');
+        art.id = 'card-' + c.id;
+        const tagsHtml = (c.tags || '').split(';').filter(Boolean)
+          .map(t => '<span class="tag">' + t + '</span>').join('');
+        art.innerHTML =
+          '<div class="tags">' + tagsHtml + '</div>' +
+          '<h2><a href="#card-' + c.id + '">#' + c.id + ' — ' + esc(c.question) + '</a></h2>' +
+          '<div class="answer">' + esc(c.answer) + '</div>' +
+          '<button type="button" class="more">Показать полностью</button>';
+        art.querySelector('.more').onclick = () => art.classList.toggle('open');
+        list.appendChild(art);
+      }
+      countEl.textContent = n;
+    }
+    function esc(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    qEl.oninput = render;
+    tagEl.onchange = render;
+    render();
+    if (location.hash.startsWith('#card-')) {
+      const el = document.querySelector(location.hash);
+      if (el) { el.classList.add('open'); el.scrollIntoView({behavior:'smooth'}); }
+    }
+  </script>
+</body>
+</html>
+"""
+
+
+def main() -> None:
+    if not KB_CSV.exists():
+        print(f"Missing {KB_CSV}. Run: make kb-build")
+        sys.exit(1)
+
+    df = pd.read_csv(KB_CSV).fillna("")
+    cards = []
+    for _, r in df.iterrows():
+        cards.append(
+            {
+                "id": int(r["id"]),
+                "question": str(r["question"]),
+                "answer": str(r["answer"]),
+                "tags": str(r.get("tags") or ""),
+            }
+        )
+
+    WIKI_SITE_DIR.mkdir(parents=True, exist_ok=True)
+    (WIKI_SITE_DIR / "index.html").write_text(INDEX_HTML, encoding="utf-8")
+
+    js = "window.WIKI_CARDS = " + json.dumps(cards, ensure_ascii=False) + ";\n"
+    (WIKI_SITE_DIR / "cards.js").write_text(js, encoding="utf-8")
+
+    print(f"Wiki site: {len(cards)} cards → {WIKI_SITE_DIR}/index.html")
+
+
+if __name__ == "__main__":
+    main()

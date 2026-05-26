@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartTherm — админка FAQ</title>
+  <style>
+    :root { --bg:#0f1419; --card:#1a2332; --text:#e7ecf3; --muted:#8b9cb3; --accent:#3d8bfd; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 1rem 1.5rem 3rem; }
+    h1 { font-size: 1.35rem; margin: 0 0 1rem; }
+    h2 { font-size: 1rem; color: var(--muted); margin: 0 0 .75rem; }
+    .bar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: 1rem; }
+    input, textarea, button {
+      font: inherit; border-radius: 8px; border: 1px solid #2a3a52; background: var(--card); color: var(--text); padding: .45rem .65rem;
+    }
+    textarea { width: 100%; min-height: 90px; resize: vertical; }
+    button { cursor: pointer; background: var(--accent); border-color: var(--accent); color: #fff; }
+    button.secondary { background: transparent; }
+    button.danger { background: #a33; border-color: #a33; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .6rem; margin-bottom: 1rem; }
+    .stat { background: var(--card); padding: .7rem; border-radius: 10px; }
+    .stat b { font-size: 1.3rem; display: block; }
+    .stat span { color: var(--muted); font-size: .75rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { text-align: left; padding: .45rem; border-bottom: 1px solid #2a3a52; vertical-align: top; }
+    th { color: var(--muted); }
+    .card { background: var(--card); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+    .hidden { display: none; }
+    .msg { padding: .5rem .7rem; border-radius: 8px; margin-bottom: .5rem; }
+    .msg.ok { background: rgba(61,200,120,.15); }
+    .msg.err { background: rgba(180,60,60,.25); }
+    label { display: block; font-size: .82rem; color: var(--muted); margin: .4rem 0 .1rem; }
+    pre { background: #0a0e14; padding: .75rem; border-radius: 8px; overflow: auto; font-size: .8rem; }
+  </style>
+</head>
+<body>
+  <h1>SmartTherm — база знаний</h1>
+  <div class="bar">
+    <input type="password" id="apiKey" placeholder="X-API-Key" style="max-width:220px" />
+    <button onclick="saveKey()">Сохранить ключ</button>
+    <button class="secondary" onclick="loadAll()">Обновить</button>
+  </div>
+  <div id="flash"></div>
+  <div class="grid" id="stats"></div>
+
+  <div class="bar">
+    <button onclick="show('faq')">FAQ</button>
+    <button onclick="show('drafts')">Черновики</button>
+    <button onclick="show('esc')">Эскалации</button>
+    <button onclick="show('search')">Тест поиска</button>
+  </div>
+
+  <section id="p-faq">
+    <div class="card">
+      <h2 id="formTitle">Новая карточка</h2>
+      <input type="hidden" id="faqId" />
+      <label>Вопрос</label><textarea id="question"></textarea>
+      <label>Ответ</label><textarea id="answer" style="min-height:140px"></textarea>
+      <label>Теги</label><input id="tags" />
+      <label><input type="checkbox" id="active" checked /> Активна</label>
+      <div class="bar" style="margin-top:.6rem">
+        <button onclick="saveFaq()">Сохранить</button>
+        <button class="secondary" onclick="resetForm()">Новая</button>
+        <button class="secondary" onclick="importCsv()">Импорт CSV</button>
+      </div>
+    </div>
+    <div class="card"><table><thead><tr><th>ID</th><th>Вопрос</th><th>Теги</th><th></th></tr></thead><tbody id="faqTb"></tbody></table></div>
+  </section>
+
+  <section id="p-drafts" class="hidden"><div class="card"><table><thead><tr><th>ID</th><th>Вопрос</th><th></th></tr></thead><tbody id="draftTb"></tbody></table></div></section>
+  <section id="p-esc" class="hidden"><div class="card"><table><thead><tr><th>ID</th><th>Вопрос</th><th>Статус</th><th></th></tr></thead><tbody id="escTb"></tbody></table></div></section>
+  <section id="p-search" class="hidden">
+    <div class="card">
+      <input id="searchQ" placeholder="не подключается wifi" style="width:100%;margin-bottom:.5rem" />
+      <button onclick="testSearch()">Проверить</button>
+      <pre id="searchOut"></pre>
+    </div>
+  </section>
+
+<script>
+const H = () => ({ 'Content-Type':'application/json', 'X-API-Key': localStorage.getItem('admin_api_key')||document.getElementById('apiKey').value||'' });
+async function api(p, o={}) {
+  const r = await fetch(p, { ...o, headers: { ...H(), ...o.headers } });
+  if (!r.ok) throw new Error((await r.text()).slice(0,200));
+  return r.headers.get('content-type')?.includes('json') ? r.json() : null;
+}
+function flash(t, ok=true) {
+  const f = document.getElementById('flash');
+  f.innerHTML = `<div class="msg ${ok?'ok':'err'}">${t}</div>`;
+  setTimeout(() => f.innerHTML='', 3500);
+}
+function saveKey() { localStorage.setItem('admin_api_key', document.getElementById('apiKey').value); flash('OK'); }
+function show(p) {
+  ['faq','drafts','esc','search'].forEach(x => document.getElementById('p-'+x).classList.toggle('hidden', x!==p));
+}
+function esc(s) { const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+let FAQ_CACHE = [];
+async function loadAll() {
+  try {
+    const d = await api('/dashboard');
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><b>${d.faq_active}</b><span>FAQ</span></div>
+      <div class="stat"><b>${d.queries_total}</b><span>Запросов</span></div>
+      <div class="stat"><b>${d.escalations_open}</b><span>Эскалаций</span></div>
+      <div class="stat"><b>${d.feedback.helpful}</b><span>👍</span></div>
+      <div class="stat"><b>${d.feedback.not_helpful}</b><span>👎</span></div>`;
+    FAQ_CACHE = await api('/faq');
+    document.getElementById('faqTb').innerHTML = FAQ_CACHE.map(f => `<tr>
+      <td>${f.id}</td><td>${esc(f.question).slice(0,80)}</td><td>${esc(f.tags)}</td>
+      <td><button class="secondary" data-eid="${f.id}">✎</button>
+      <button class="danger" data-did="${f.id}">✕</button></td></tr>`).join('');
+    document.querySelectorAll('[data-eid]').forEach(b => b.onclick = () => editFaq(+b.dataset.eid));
+    document.querySelectorAll('[data-did]').forEach(b => b.onclick = () => delFaq(+b.dataset.did));
+    const drafts = await api('/drafts');
+    document.getElementById('draftTb').innerHTML = drafts.map(x =>
+      `<tr><td>${x.id}</td><td>${esc(x.question).slice(0,100)}</td>
+      <td><button onclick="publishDraft(${x.id})">Опубликовать</button></td></tr>`).join('');
+    const esc = await api('/escalations');
+    document.getElementById('escTb').innerHTML = esc.map(e =>
+      `<tr><td>${e.id}</td><td>${esc(e.query_text).slice(0,100)}</td><td>${e.status}</td>
+      <td>${e.status==='open'?`<button onclick="resolveEsc(${e.id})">Закрыть</button>`:''}</td></tr>`).join('');
+  } catch (e) { flash(e.message, false); }
+}
+function editFaq(id) {
+  const f = FAQ_CACHE.find(x => x.id === id);
+  if (!f) return;
+  document.getElementById('formTitle').textContent = 'Редактирование #' + id;
+  document.getElementById('faqId').value = id;
+  document.getElementById('question').value = f.question;
+  document.getElementById('answer').value = f.answer;
+  document.getElementById('tags').value = f.tags || '';
+  document.getElementById('active').checked = !!f.active;
+  show('faq');
+}
+function resetForm() {
+  document.getElementById('formTitle').textContent = 'Новая карточка';
+  ['faqId','question','answer','tags'].forEach(i => document.getElementById(i).value = '');
+  document.getElementById('active').checked = true;
+}
+async function saveFaq() {
+  const id = document.getElementById('faqId').value;
+  const body = JSON.stringify({
+    question: document.getElementById('question').value,
+    answer: document.getElementById('answer').value,
+    tags: document.getElementById('tags').value,
+    active: document.getElementById('active').checked
+  });
+  try {
+    if (id) await api('/faq/'+id, { method:'PUT', body });
+    else await api('/faq', { method:'POST', body });
+    flash('Сохранено'); resetForm(); loadAll();
+  } catch (e) { flash(e.message, false); }
+}
+async function delFaq(id) {
+  if (!confirm('Деактивировать #'+id+'?')) return;
+  try { await api('/faq/'+id, { method:'DELETE' }); loadAll(); } catch(e) { flash(e.message,false); }
+}
+async function importCsv() {
+  try { const r = await api('/faq/import-csv', { method:'POST' }); flash('Импорт: '+r.imported); loadAll(); }
+  catch(e) { flash(e.message,false); }
+}
+async function publishDraft(id) {
+  try { const r = await api('/drafts/'+id+'/publish', { method:'POST' }); flash('FAQ #'+r.faq_id); loadAll(); }
+  catch(e) { flash(e.message,false); }
+}
+async function resolveEsc(id) {
+  try { await api('/escalations/'+id+'/resolve', { method:'POST' }); loadAll(); } catch(e) { flash(e.message,false); }
+}
+async function testSearch() {
+  try {
+    const r = await api('/search', { method:'POST', body: JSON.stringify({ query: document.getElementById('searchQ').value }) });
+    document.getElementById('searchOut').textContent = JSON.stringify(r, null, 2);
+  } catch(e) { document.getElementById('searchOut').textContent = e.message; }
+}
+document.getElementById('apiKey').value = localStorage.getItem('admin_api_key') || '';
+loadAll();
+</script>
+</body>
+</html>
